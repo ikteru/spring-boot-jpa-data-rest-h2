@@ -6,10 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Entity
 @Data
@@ -21,7 +18,9 @@ public class Student {
 	private Long id;
 	private String name;
 	private String passportNumber;
-
+	@ManyToOne
+	@JoinColumn(name="STUDENTS_ID")
+	private Training training;
 	
 	
 	public Student() {
@@ -34,6 +33,7 @@ public class Student {
 		this.id = id;
 		this.name = name;
 		this.passportNumber = passportNumber;
+		this.training = training;
 	}
 
 
@@ -67,9 +67,15 @@ public class Student {
 	}
 
 
+	public Training getTraining() {
+		return training;
+	}
 
 
-
+	public void setTraining(Training training) {
+		this.training = training;
+	}
+	
 	
 
 
